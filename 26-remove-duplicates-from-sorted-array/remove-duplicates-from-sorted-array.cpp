@@ -5,12 +5,11 @@ public:
         
         for(int i = 1;i<nums.size();i++){
             if(num == nums[i]){
-                nums.erase(nums.begin()+i);
-                i--;
+                nums.erase(nums.begin()+i--);
+                
             }
             else{
                 num = nums[i];
-                
             }
         }
         return nums.size();
