@@ -3,6 +3,7 @@ public:
     vector<vector<int>> subsets(vector<int>& nums) {
         vector<vector<int>> ans;
         vector<int> s;
+        sort(nums.begin(),nums.end());
         generateSubsets(0 , nums ,ans , s);
     return ans;
     }
