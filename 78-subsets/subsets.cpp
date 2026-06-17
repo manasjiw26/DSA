@@ -1,23 +1,22 @@
 class Solution {
 public:
     vector<vector<int>> subsets(vector<int>& nums) {
-        vector<vector<int>> ans;
-        vector<int> s;
-        sort(nums.begin(),nums.end());
-        generateSubsets(0 , nums ,ans , s);
-    return ans;
+        int n = nums.size();
+        vector<vector<int>> result;
+        vector<int> subset;
+        generatesubset(nums,result,0,subset);
+
+        return result;
     }
-    void generateSubsets(int n,vector<int>& nums, vector<vector<int>> &ans,vector<int> s){
-        if(n == nums.size()){
-            ans.push_back({s});
+    void generatesubset(vector<int>& nums , vector<vector<int>> &res,int index,vector<int> &subset){
+        if(index == nums.size()){
+            res.push_back(subset);
             return;
         }
+    subset.push_back(nums[index]);
+    generatesubset(nums,res,index+1,subset);
 
-        s.push_back(nums[n]);
-        generateSubsets(n+1 , nums ,ans ,s);
-
-        s.pop_back();
-        generateSubsets(n+1 , nums ,ans ,s);
-        
+    subset.pop_back();
+    generatesubset(nums,res,index+1,subset);
     }
 };
