@@ -1,19 +1,17 @@
 class Solution {
 public:
-int maximum(int a,int b){
-    return a<b?b:a;
-}
     int majorityElement(vector<int>& nums) {
-        unordered_map <int,int> freq;
-        int max = INT_MIN;
-        int maxnum;
-        for(int i = 0;i<nums.size();i++){
-            freq[nums[i]]++;
-            max = maximum(freq[nums[i]],max);
-            if(max == freq[nums[i]]){
-                maxnum = nums[i];
-            }
+        int elem = nums[0],count = 1;
+            for(int i = 1;i<nums.size();i++){
+                if(nums[i]!=elem){
+                    count--;
+                }
+                else{count++;}
+                if(count == 0){
+                    elem = nums[i];
+                    count++;
+                }
         }
-        return maxnum;
+        return elem;
     }
 };
