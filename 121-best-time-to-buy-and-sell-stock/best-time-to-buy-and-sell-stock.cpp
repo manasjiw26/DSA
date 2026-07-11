@@ -1,20 +1,19 @@
 class Solution {
 public:
-int maximum(int a,int b){
-    return a>=b ? a:b;
-}
     int maxProfit(vector<int>& prices) {
-        int n = prices.size();
-    vector <int> rightmax(n,0);
-    int max = prices[n-1];
-    int best = 0;
-    for(int i = n-2;i>=0;i--){
-        if(rightmax[i+1] >= max){
-            max = maximum(rightmax[i+1],prices[i+1]);
+        if(prices.size()<2){
+            return 0;
         }
-            rightmax[i] = max;
-            best = maximum(best , rightmax[i]-prices[i]);
-    }
-    return best;
+        int n = prices.size();
+        vector <int> maxonr(n+1,0);
+        for(int i = prices.size()-1;i>=0;i--){
+            maxonr[i] = max(maxonr[i+1],prices[i]);
+        }
+
+        int maxprofit = -1;
+        for(int i=0;i<n;i++){
+            maxprofit = max(maxprofit,maxonr[i]-prices[i]);
+        }
+        return maxprofit;
     }
 };
