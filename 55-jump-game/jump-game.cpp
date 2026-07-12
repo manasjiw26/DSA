@@ -1,16 +1,16 @@
 class Solution {
 public:
     bool canJump(vector<int>& nums) {
-        int jump = 1;
-        int n = nums.size();
-        if(nums.size() == 1){return true;}
-    for(int i = n-2;i>=0;i--){
-        if(nums[i] >= jump){
-            jump = 0;
+        int n=nums.size();
+        if(n < 2){
+            return true;
         }
-            jump++;
-    }
-
-    return --jump == 0 ? true:false;
+        int toreach = nums.size()-1;
+        for(int i=nums.size()-1;i>=0;i--){
+            if(nums[i] >= (toreach-i)){
+                toreach = i; 
+            }
+        }
+        return toreach==0?true:false;
     }
 };
