@@ -11,7 +11,7 @@ public:
         for(int i = 1;i<nums.size();i++){
             
                 leftmul.push_back(leftmul.back()*nums[i-1]);
-                rightmul.insert(rightmul.begin(),rightmul.front()*nums[n-i]);
+                rightmul.push_back(rightmul.back()*nums[n-i]);
             
         }
 
@@ -24,9 +24,9 @@ public:
         }
         
         vector<int> res;
-        res.push_back(rightmul[0]);
+        res.push_back(rightmul[n-1]);
         for(int i = 1;i<n-1;i++){
-            res.push_back(leftmul[i]*rightmul[i]);
+            res.push_back(leftmul[i]*rightmul[n-i-1]);
         }
         res.push_back(leftmul[n-1]);
         return res;
