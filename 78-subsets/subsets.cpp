@@ -1,22 +1,19 @@
 class Solution {
 public:
     vector<vector<int>> subsets(vector<int>& nums) {
-        int n = nums.size();
-        vector<vector<int>> result;
-        vector<int> subset;
-        generatesubset(nums,result,0,subset);
-
-        return result;
+        vector<vector<int>> res;
+        vector<int> k;
+        subsetsMaker(nums,k,nums.size(),res);
+        return res;
     }
-    void generatesubset(vector<int>& nums , vector<vector<int>> &res,int index,vector<int> &subset){
-        if(index == nums.size()){
+    void subsetsMaker(vector<int>& nums,vector <int> subset,int size,vector<vector<int>> &res){
+        if(size == 0){
             res.push_back(subset);
             return;
         }
-    subset.push_back(nums[index]);
-    generatesubset(nums,res,index+1,subset);
-
-    subset.pop_back();
-    generatesubset(nums,res,index+1,subset);
+        int index = nums.size()-size;
+        subsetsMaker(nums,subset,size-1,res);
+        subset.push_back(nums[index]);
+        subsetsMaker(nums,subset,size-1,res);
     }
 };
