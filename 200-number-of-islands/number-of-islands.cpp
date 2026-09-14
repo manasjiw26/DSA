@@ -10,12 +10,7 @@ public:
                 if(!vis[i][j] && grid[i][j] == '1'){
                     counter++;
                     vis[i][j] = 1;
-                    if(i+1<grid.size() && grid[i+1][j] == '1'){
-                        island(grid,vis,i+1,j);
-                    }
-                    if(j+1<grid[0].size() && grid[i][j+1] == '1'){
-                        island(grid,vis,i,j+1);
-                    }
+                    island(grid,vis,i,j);
                 }
             }
         }
